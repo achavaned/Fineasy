@@ -1,0 +1,19 @@
+{% extends 'principal/index.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-2"></div>
+            <div class="col-md-8 text-center">
+                <p>¿Está seguro de que quiere borrar el Ingreso "{{item}}" ?</p>
+                <form action ="{% url 'delete_ingreso' item.id %}" method="POST">
+                
+                    {% csrf_token %}
+                    <a href="{% url 'ingresos' %}">Cancel</a>
+                    <input type="submit" name="Confirm" value="Borrar">
+                </form>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,94 @@
+
+{% extends "principal/index.html" %}
+{% block content %}
+
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card card-body">
+                <form method='get'>
+                {{myIngresosFilter.form}}
+                <button type = "submit" class = "btn btn-primary">Buscar</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h3><b>Ingresos</b></h3>
+            <div class="card card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                        <th>Tipo</th>
+                        <th>Valor (COP$)</th>
+                        <th>Fecha</th>
+                    </tr>
+                    {% for i in ingresos %}
+                    <tr>
+                        <td>{{i.nombre_ingreso}}</td>
+                        <td>{{i.categoria}}</td>
+                        <td>{{i.tag}}</td>
+                        <td>{{i.valor}}</td>
+                        <td>{{i.date}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+    <hr>
+    <!--<div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card card-body">
+                <form method='get'>
+                {{myGastosFilter.form}}
+                <button type = "submit" class = "btn btn-primary">Buscar Gastos</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>-->
+    <div class= "row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <h3><b>Gastos</b></h3>
+            <div class="card card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                        <th>Tipo</th>
+                        <th>Valor (COP$)</th>
+                        <th>Fecha</th>
+                    </tr>
+                    {% for i in gastos %}
+                    <tr>
+                        <td>{{i.nombre_Gasto}}</td>
+                        <td>{{i.categoria}}</td>
+                        <td>{{i.tag}}</td>
+                        <td>{{i.valor}}</td>
+                        <td>{{i.date}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div> 
+</div>
+  
+{% endblock content %}
+
+  
+

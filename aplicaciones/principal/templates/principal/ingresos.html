@@ -1,0 +1,50 @@
+{% extends 'principal/index.html' %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="card card-body">
+                <form method='get'>
+                {{myTagIngresosFilter.form}}
+                <button type = "submit" class = "btn btn-primary">Buscar Tipos</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="row">
+    <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <h3><b>Ingresos</b></h3>
+            <div class="card card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                        <th>Tipo</th>
+                        <th>Valor (COP$)</th>
+                        <th>Actualizar</th>
+                        <th>Remover</th>
+                    </tr>
+                    {% for i in ingresos %}
+                    <tr>
+                        <td>{{i.nombre_ingreso}}</td>
+                        <td>{{i.categoria}}</td>
+                        <td>{{i.tag}}</td>
+                        <td>{{i.valor}}</td>
+                        <td><a class="btn btn-sm btn-info" href="{% url 'update_ingreso' i.id %}">Actualizar</a></td>
+                        <td><a class="btn btn-sm btn-danger" href="{% url 'delete_ingreso' i.id %}">Borrar</a></td>
+
+                    </tr>
+                    {% endfor %}
+
+                </table>
+                <a class="btn btn-primary  btn-sm btn-block" href="{% url 'ingreso' %}">Añadir ingreso</a>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+{% endblock content %}

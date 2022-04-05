@@ -1,0 +1,187 @@
+{% extends "principal/index.html" %}
+{% block content %}
+
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 text-center">
+            <div class="card card-body">
+            <h3><b>SALDO(COP):</b>{{saldo}}$</h3>
+            <hr>
+            </div>
+            <!--<div class="card card-body">
+                <h2 style="text-align:right">{{saldo}}$</h2>
+            </div>-->
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-8">
+            <div id="container" style="width: 75%;">
+                <canvas id="ingresos_chart" data-url="{% url 'ingresos_chart' %}"></canvas>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-8">
+            <div id="container" style="width: 75%;">
+                <canvas id="gastos_chart" data-url="{% url 'gastos_chart' %}"></canvas>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h3><b>Ingresos</b></h3>
+            <hr>
+            <div class="card card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                        <th>Tipo</th>
+                        <th>Valor (COP$)</th>
+                    </tr>
+                    {% for i in ingresos %}
+                    <tr>
+                        <td>{{i.nombre_ingreso}}</td>
+                        <td>{{i.categoria}}</td>
+                        <td>{{i.tag}}</td>
+                        <td>{{i.valor}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h3><b>Gastos</b></h3>
+            <hr>
+            <div class="card card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                        <th>Tag</th>
+                        <th>Valor (COP$)</th>
+                    </tr>
+                    {% for i in gastos %}
+                    <tr>
+                        <td>{{i.nombre_Gasto}}</td>
+                        <td>{{i.categoria}}</td>
+                        <td>{{i.tag}}</td>
+                        <td>{{i.valor}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script>
+
+    $(function () {
+
+        var $ingresosChart = $("#ingresos_chart");
+        $.ajax({
+            url: $ingresosChart.data("url"),
+            success: function (data) {
+
+                var ctx = $ingresosChart[0].getContext("2d");
+
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.labels,
+                        datasets: [{
+                            label: 'Valor ingreso',
+                            backgroundColor: 'blue',
+                            data: data.data
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Ingresos gráfica'
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+
+            }
+        });
+
+    });
+
+</script>
+<script>
+
+    $(function () {
+
+        var $gastosChart = $("#gastos_chart");
+        $.ajax({
+            url: $gastosChart.data("url"),
+            success: function (data) {
+
+                var ctx = $gastosChart[0].getContext("2d");
+
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.labels,
+                        datasets: [{
+                            label: 'Valor Gasto',
+                            backgroundColor: 'red',
+                            data: data.data
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Gastos gráfica'
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+
+            }
+        });
+
+    });
+
+</script>
+
+{% endblock content %}

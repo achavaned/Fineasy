@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    /*padding: 0;*/
+}
+.header
+{
+    padding: 1em 5em 1em 5em;
+    text-align: center;
+}
+
+.navbar-style
+{
+    box-shadow: 0 5px 10px #efefef;
+}
+.navbar-custom {
+    background-color: #ECEDF2;
+} /*#ECEDF2*/
+
+.navbar-custom .navbar-nav > .open > a{
+    background-color: #4F648A;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text 
+{
+    color: #4F648A;
+} 
+.nav.navbar-nav {
+    float: left;
+}
+.nav.navbar-nav {
+    clear: left;
+    float: left;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    left: 50%;
+    text-align: center;
+}
+.nav.navbar-nav > li {
+    position: relative;
+    right: 50%;
+}
+.nav.navbar-nav li {
+   text-align: left
+}

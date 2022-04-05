@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fineasy</title>
+  <!--Aquí se esta haciendo al referencia del archivo estatico css-->
+  <link rel="stylesheet" type="text/css" href="{% static 'principal/estilos/style.css' %}">
+
+  <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">-->
+  <style>
+    body,
+    html {
+			margin: 0;
+			padding: 0em 0em 8em 0em;
+			height: 100%;
+			background: #f8f9fb !important; /*#7abecc*/
+		}
+  .hello-msg{
+    font-size: 24px;
+    margin-right: 20px;
+    color:#4F648A;
+    font-family: cursive;
+  }
+  </style>
+</head>
+
+<body>
+  {% include 'principal/navbar.html' %}
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-4 text-center">
+    <span class="hello-msg"><b>¡Hola {{request.user}}!</b></span>
+  </div>
+  <div class="col-md-4 text-right">
+    <a class="btn btn-danger" href="{% url 'logout' %}">Logout</a>
+  </div>
+  <hr>
+  {% block content %}
+
+  {% endblock content %}
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+</html>
